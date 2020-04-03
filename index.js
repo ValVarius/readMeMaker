@@ -16,8 +16,9 @@ inquirer.prompt([
     },
     {
       type: "input",
-      message: "Would you like to add a table of contents? Then Enter a list of contents each separated by comma:Example(description,installation,etc)",
-      name: "table"
+      name: "table",
+      message: "Would you like to add a table of contents? Then Enter a list of contents each separated by comma:Example(description,installation,etc)"
+
     },
     {
       type: "input",
@@ -44,7 +45,7 @@ inquirer.prompt([
   
     var gitUrl = "https://api.github.com/users/"+ data.github;
 
-    var filename = data.projectName.toUpperCase().split(' ').join('') + ".md";
+    var filename = "README.md"
 
     axios
   .get(gitUrl)
@@ -56,13 +57,13 @@ inquirer.prompt([
         }
       })
       // Adds the project Title
-      fs.appendFile(filename,"\n"+ "# "+ data.projectName.toUpperCase().split(' ').join(''), function(err) { 
+      fs.appendFile(filename,"\n"+ "# "+ data.projectName, function(err) { 
         if (err) {
           return console.log(err);
         }
       });
       // if user chose to add a table of contents, it prompts for the needed data and then adds table to file
-      if(!data.table=='undefined')
+      if(data.table!=='undefined')
       {
           let list = data.table.toUpperCase().split(",");
           for (let i = 0; i < list.length; i++) {
@@ -79,7 +80,7 @@ inquirer.prompt([
       };
       // adds badge to file
           var badge = "\n"+ "https://img.shields.io/static/v1?label="+ data.label +"&message="+ data.message +"&color="+ data.color;
-    if (!data.label=='undefined'){
+    if (data.label!=='undefined'){
 
           fs.appendFile(filename,badge,function(err) {
             if (err) {
