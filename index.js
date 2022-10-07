@@ -79,7 +79,7 @@ inquirer.prompt([
           
       };
       // adds badge to file
-          var badge = "\n"+ "https://img.shields.io/static/v1?label="+ data.label +"&message="+ data.message +"&color="+ data.color;
+          let badge = "\n"+ "https://img.shields.io/static/v1?label="+ data.label +"&message="+ data.message +"&color="+ data.color;
     if (data.label!=='undefined'){
 
           fs.appendFile(filename,badge,function(err) {
